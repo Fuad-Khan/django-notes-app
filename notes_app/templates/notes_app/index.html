@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+</head>
+<body>
+    <h1>📒 My Notes</h1>
+
+    {% for note in notes %}
+        <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.content }}</p>
+            <small>{{ note.created_at }}</small>
+            <a href="{% url 'edit_note' note.id %}">✏️ Edit</a> | 
+            <a href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?');">🗑️ Delete</a>
+
+        </div>
+    {% empty %}
+        <p>No notes yet...</p>
+    {% endfor %}
+    <a href="{% url 'add_note' %}">➕ Add New Note</a>
+
+
+
+</body>
+</html>
