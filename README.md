@@ -7,7 +7,7 @@ A simple CRUD-based Notes App built with Django. You can add, edit, delete, and 
 ## 🚀 Live Demo
 
 🔗 [https://django-notes-app-cqbp.onrender.com/](https://django-notes-app-cqbp.onrender.com/)  
-*(Replace with your actual Render link)*
+
 
 ---
 
