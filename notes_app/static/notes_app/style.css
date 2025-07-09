@@ -8,7 +8,7 @@
 
 body {
   background: linear-gradient(135deg, #f0f4ff, #e0eaff);
-  padding: 30px;
+  padding: 20px;
   color: #333;
   min-height: 100vh;
 }
@@ -17,22 +17,23 @@ body {
   max-width: 700px;
   margin: auto;
   background-color: white;
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: #2b3d63;
+  font-size: 1.8rem;
 }
 
 .note-card {
   border-left: 6px solid #6c63ff;
   border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 15px;
+  margin-bottom: 15px;
   background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.03);
   transition: transform 0.2s;
@@ -43,33 +44,43 @@ h1 {
 }
 
 .note-card h3 {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: #2b3d63;
 }
 
 .note-card p {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   line-height: 1.5;
+  color: #555;
 }
 
 .note-card small {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #888;
+  font-size: 0.8rem;
 }
 
 .actions {
   margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  padding: 8px 14px;
-  margin-right: 10px;
+  padding: 8px 12px;
   border-radius: 4px;
-  font-size: 0.9em;
-  transition: 0.3s ease;
+  font-size: 0.85em;
+  transition: all 0.3s ease;
   color: white;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
 }
 
 .button.edit {
@@ -92,8 +103,8 @@ h1 {
   background-color: #2196f3;
   display: block;
   width: fit-content;
-  margin: 40px auto 0;
-  padding: 12px 20px;
+  margin: 30px auto 0;
+  padding: 10px 18px;
   font-size: 1em;
 }
 
@@ -105,23 +116,41 @@ h1 {
   text-align: center;
   color: #777;
   font-style: italic;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 /* Form elements */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 500;
+  color: #2b3d63;
+  margin-top: 10px;
+}
+
 input[type="text"],
 textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-top: 8px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 1em;
+  transition: border 0.3s;
 }
 
-button {
-  padding: 10px 20px;
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #6c63ff;
+}
+
+button[type="submit"] {
+  padding: 12px 20px;
   background-color: #6c63ff;
   color: white;
   border: none;
@@ -129,19 +158,148 @@ button {
   font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-top: 10px;
+  width: 100%;
 }
 
-button:hover {
+button[type="submit"]:hover {
   background-color: #5848d0;
 }
 
-a {
+.back-link {
   display: inline-block;
   margin-top: 20px;
   color: #2196f3;
   text-decoration: none;
+  transition: color 0.3s;
+  font-weight: 500;
 }
 
-a:hover {
+.back-link:hover {
+  color: #1976d2;
   text-decoration: underline;
+}
+
+/* Form errors */
+.errorlist {
+  color: #f44336;
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  .container, form {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .button.add {
+    margin: 20px auto 0;
+    padding: 10px 16px;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  .container, form {
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    font-size: 1.3rem;
+  }
+  
+  .note-card {
+    padding: 12px;
+  }
+  
+  .button {
+    padding: 10px;
+    font-size: 0.9em;
+    width: 100%;
+  }
+  
+  .button.add {
+    width: 100%;
+  }
+  
+  input[type="text"],
+  textarea {
+    padding: 10px;
+  }
+}
+
+/* Note Detail Page Styles */
+.note-detail {
+    padding: 20px;
+}
+
+.note-date {
+    display: block;
+    margin-bottom: 20px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.note-content {
+    padding: 20px 0;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #333;
+    white-space: pre-wrap;
+}
+
+.note-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.note-actions .button {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+}
+
+.note-actions .button.back {
+    background-color: #6c63ff;
+}
+
+.note-actions .button.back:hover {
+    background-color: #5848d0;
+}
+
+/* Responsive adjustments for note detail */
+@media (max-width: 768px) {
+    .note-content {
+        font-size: 1rem;
+        padding: 15px 0;
+    }
+    
+    .note-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .note-actions .button {
+        width: 100%;
+    }
 }

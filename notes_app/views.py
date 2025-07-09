@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Note
 from .forms import NoteForm
 
@@ -36,3 +36,6 @@ def delete_note(request, note_id):
     note.delete()
     return redirect('index')
 
+def view_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    return render(request, 'notes_app/view_note.html', {'note': note})

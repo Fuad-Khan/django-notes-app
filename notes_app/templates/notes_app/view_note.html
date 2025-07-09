@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ note.title }}</title>
+    <link rel="stylesheet" href="{% static 'notes_app/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="note-detail">
+            <h1>{{ note.title }}</h1>
+            <small class="note-date" data-time="{{ note.created_at|date:'c' }}"></small>
+            <div class="note-content">
+                {{ note.content|linebreaks }}
+            </div>
+            
+            <div class="note-actions">
+                <a href="{% url 'edit_note' note.id %}" class="button edit">
+                    <span>✏️</span> Edit
+                </a>
+                <a href="{% url 'delete_note' note.id %}" class="button delete" onclick="return confirm('Are you sure you want to delete this note?');">
+                    <span>🗑️</span> Delete
+                </a>
+                <a href="{% url 'index' %}" class="button back">
+                    <span>←</span> Back to Notes
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const timeElement = document.querySelector('.note-date');
+            const utcTime = timeElement.dataset.time;
+            const localDate = new Date(utcTime);
+            const formatted = localDate.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+            timeElement.textContent = "🕒 Created: " + formatted;
+        });
+    </script>
+</body>
+</html>

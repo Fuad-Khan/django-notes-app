@@ -1,51 +1,68 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>📒 My Notes</title>
-    <link rel="stylesheet" href="{% static 'notes_app/style.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'notes_app/style.css' %}" />
+  </head>
+  <body>
     <div class="container">
-        <h1>📒 My Notes</h1>
+      <h1>📒 My Notes</h1>
 
-        {% for note in notes %}
-            <div class="note-card">
-                <h3>{{ note.title }}</h3>
-                <p>{{ note.content }}</p>
-                <small class="utc-time" data-time="{{ note.created_at|date:'c' }}"></small>
+      {% for note in notes %}
+      <div
+        class="note-card"
+        onclick="window.location='{% url 'view_note' note.id %}'"
+        style="cursor: pointer"
+      >
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.content|truncatechars:100 }}</p>
+        <small
+          class="utc-time"
+          data-time="{{ note.created_at|date:'c' }}"
+        ></small>
 
-                <div class="actions">
-                    <a href="{% url 'edit_note' note.id %}" class="button edit">✏️ Edit</a>
-                    <a href="{% url 'delete_note' note.id %}" class="button delete" onclick="return confirm('Delete this note?');">🗑️ Delete</a>
-                </div>
-            </div>
-        {% empty %}
-            <p class="no-notes">No notes yet...</p>
-        {% endfor %}
+        <div class="actions" onclick="event.stopPropagation()">
+          <a href="{% url 'edit_note' note.id %}" class="button edit">
+            <span>✏️</span> Edit
+          </a>
+          <a
+            href="{% url 'delete_note' note.id %}"
+            class="button delete"
+            onclick="return confirm('Are you sure you want to delete this note?');"
+          >
+            <span>🗑️</span> Delete
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <p class="no-notes">No notes yet. Create your first note!</p>
+      {% endfor %}
 
-        <a href="{% url 'add_note' %}" class="button add">➕ Add New Note</a>
+      <a href="{% url 'add_note' %}" class="button add">
+        <span>➕</span> Add New Note
+      </a>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const timeElements = document.querySelectorAll('.utc-time');
-        timeElements.forEach(el => {
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const timeElements = document.querySelectorAll(".utc-time");
+          timeElements.forEach((el) => {
             const utcTime = el.dataset.time;
             const localDate = new Date(utcTime);
-            const formatted = localDate.toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
+            const formatted = localDate.toLocaleString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
             });
             el.textContent = "🕒 " + formatted;
+          });
         });
-    });
-</script>
+      </script>
     </div>
-</body>
+  </body>
 </html>
