@@ -3,27 +3,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📒 My Notes</title>
     <link rel="stylesheet" href="{% static 'notes_app/style.css' %}">
 </head>
 <body>
-    <h1>📒 My Notes</h1>
+    <div class="container">
+        <h1>📒 My Notes</h1>
 
-    {% for note in notes %}
-        <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
-            <h3>{{ note.title }}</h3>
-            <p>{{ note.content }}</p>
-            <small>{{ note.created_at }}</small>
-            <a href="{% url 'edit_note' note.id %}">✏️ Edit</a> | 
-            <a href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?');">🗑️ Delete</a>
+        {% for note in notes %}
+            <div class="note-card">
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.content }}</p>
+                <small class="utc-time" data-time="{{ note.created_at|date:'c' }}"></small>
 
-        </div>
-    {% empty %}
-        <p>No notes yet...</p>
-    {% endfor %}
-    <a href="{% url 'add_note' %}">➕ Add New Note</a>
+                <div class="actions">
+                    <a href="{% url 'edit_note' note.id %}" class="button edit">✏️ Edit</a>
+                    <a href="{% url 'delete_note' note.id %}" class="button delete" onclick="return confirm('Delete this note?');">🗑️ Delete</a>
+                </div>
+            </div>
+        {% empty %}
+            <p class="no-notes">No notes yet...</p>
+        {% endfor %}
 
+        <a href="{% url 'add_note' %}" class="button add">➕ Add New Note</a>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const timeElements = document.querySelectorAll('.utc-time');
+        timeElements.forEach(el => {
+            const utcTime = el.dataset.time;
+            const localDate = new Date(utcTime);
+            const formatted = localDate.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+            el.textContent = "🕒 " + formatted;
+        });
+    });
+</script>
+    </div>
 </body>
 </html>

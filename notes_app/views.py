@@ -36,7 +36,3 @@ def delete_note(request, note_id):
     note.delete()
     return redirect('index')
 
-urlpatterns = [
-    path('', views.index, name='index'),
-    path('add/', views.add_note, name='add_note'),  # 👈 New route
-]

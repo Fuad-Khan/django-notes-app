@@ -1,64 +1,147 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 800px;
-    margin: 30px auto;
-    background-color: #f9f9f9;
-    color: #333;
-    padding: 10px;
+  background: linear-gradient(135deg, #f0f4ff, #e0eaff);
+  padding: 30px;
+  color: #333;
+  min-height: 100vh;
+}
+
+.container, form {
+  max-width: 700px;
+  margin: auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
-    color: #4a90e2;
-    text-align: center;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2b3d63;
 }
 
-a {
-    color: #4a90e2;
-    text-decoration: none;
-    margin-right: 10px;
+.note-card {
+  border-left: 6px solid #6c63ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: transform 0.2s;
 }
 
-a:hover {
-    text-decoration: underline;
+.note-card:hover {
+  transform: translateY(-3px);
 }
 
-.note {
-    background: white;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+.note-card h3 {
+  margin-bottom: 10px;
 }
 
-.note h3 {
-    margin-top: 0;
+.note-card p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.note-card small {
+  display: block;
+  margin-bottom: 10px;
+  color: #888;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 14px;
+  margin-right: 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: 0.3s ease;
+  color: white;
+}
+
+.button.edit {
+  background-color: #4caf50;
+}
+
+.button.edit:hover {
+  background-color: #45a049;
+}
+
+.button.delete {
+  background-color: #f44336;
+}
+
+.button.delete:hover {
+  background-color: #e53935;
+}
+
+.button.add {
+  background-color: #2196f3;
+  display: block;
+  width: fit-content;
+  margin: 40px auto 0;
+  padding: 12px 20px;
+  font-size: 1em;
+}
+
+.button.add:hover {
+  background-color: #1976d2;
+}
+
+.no-notes {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  margin-top: 30px;
+}
+
+/* Form elements */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
 }
 
 button {
-    background-color: #4a90e2;
-    border: none;
-    padding: 8px 15px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
+  padding: 10px 20px;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #357ABD;
+  background-color: #5848d0;
 }
 
-input[type="text"], textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
+a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2196f3;
+  text-decoration: none;
 }
 
-form {
-    max-width: 500px;
-    margin: 0 auto;
+a:hover {
+  text-decoration: underline;
 }
